@@ -9,7 +9,7 @@ Model elements are the building blocks that make up SysML
 
 import uuid as _uuid
 from abc import ABC as _ABC
-from abc import abstractproperty as _abstractproperty
+from abc import abstractmethod
 from collections import OrderedDict as _OrderedDict
 from collections import Iterable
 from pint import UnitRegistry as _UnitRegistry
@@ -32,7 +32,8 @@ class ModelElement(_ABC):
     def __repr__(self):
         return "<{}('{}')>".format(self.__class__.__name__, self.name)
 
-    @_abstractproperty
+    @property
+    @abstractmethod
     def name(self):
         """Modeler-defined name of model element"""
         pass
@@ -336,7 +337,7 @@ class ConstraintBlock(ModelElement):
     """This class defines a constraint"""
 
     def __init__(self):
-        super().__init__(name)
+        super().__init__()
 
 
 class Dependency(ModelElement):
@@ -409,7 +410,7 @@ class Satisfy(Dependency):
 
     Note
     ----
-    A satisfy relationship assersion does not constitute proof. It is simply
+    A satisfy relationship assertion does not constitute proof. It is simply
     a mechanism to allocate a requirement to a structural element. Proof of
     satisfaction will come from test cases.
 
@@ -429,7 +430,7 @@ class StateMachine(ModelElement):
     """This class defines a state"""
 
     def __init__(self):
-        super().__init__(name)
+        super().__init__()
 
     @property
     def name(self):
@@ -439,7 +440,7 @@ class StateMachine(ModelElement):
 class Activity(ModelElement):
     """This class defines a activity"""
 
-    def __init__(self):
+    def __init__(self, name):
         super().__init__(name)
 
     @property

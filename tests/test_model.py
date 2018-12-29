@@ -6,14 +6,6 @@ from pint import UnitRegistry
 from yaml import dump
 
 
-@pytest.fixture(scope="module")
-def model():
-    """Create a model object that will also serve as the root directory for all
-    other model elements"""
-    model = sysml.Model("NCC-1701")
-    return model
-
-
 def test_model(model):
     assert repr(model) == "<Model('NCC-1701')>"
     assert repr(type(model)) == "<class 'sysml.system.Model'>"
